@@ -5,6 +5,7 @@
     </head>
     <body onload="makeTable()">
         <script>
+            let life = 10;
             function makeTable() {
                 let table = document.createElement("table");
                 log("let table");
@@ -40,6 +41,11 @@
                     }
                     table.append(tr);
                     log(i + " tb ap");
+
+                    let button = document.createElement("button");
+                    log("let Check Button");
+                    button.type = "button";
+                    button.onclick = Check();
                 }
 
                 document.body.append(table);
