@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style></style>
+    </head>
+    <body onload="makeTable()">
+        <script>
+            function makeTable() {
+                let table = document.createElement("table");
+                log("let table");
+                for (let i = 0; i < 9; i++) {
+                    let tr = document.createElement("tr");
+                    log(i + " tr");
+                    for (let j = 0; j < 9; j++) {
+                        let td = document.createElement("td");
+                        log(j + " td");
+                        let input = document.createElement("input");
+                        log(j + " input");
+
+                        input.type = "number";
+                        input.id = i + "." + j;
+                        input.max = 9;
+                        input.min = 0;
+
+                        log(j + " type and id and maxlength");
+                        td.append(input);
+                        log(j + " td ap");
+                        tr.append(td);
+                        log(j + " tr ap");
+
+                        input.oninput = function () {
+                            input.value = input.value % 10;
+                            console.log(
+                                "changed! id : " + input.id + "   Number : ",
+                                input.value
+                            );
+                        };
+                    }
+                    table.append(tr);
+                    log(i + " tb ap");
+                }
+
+                document.body.append(table);
+            }
+
+            function log(string) {
+                console.log(string);
+            }
+
+            function maxLengthCheck(object) {
+                if (object.value.length > object.maxLength) {
+                    object.value = object.value.slice(0, object.maxLength);
+                }
+            }
+        </script>
+    </body>
+</html>
