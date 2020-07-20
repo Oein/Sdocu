@@ -30,9 +30,11 @@
 
                         input.oninput = function () {
                             input.value = input.value % 10;
-                            console.log(
-                                "changed! id : " + input.id + "   Number : ",
-                                input.value
+                            log(
+                                "changed! id : " +
+                                    input.id.replace(".", " , ") +
+                                    "   Number : " +
+                                    input.value
                             );
                         };
                     }
