@@ -1,65 +1,56 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <style></style>
-    </head>
-    <body onload="makeTable()">
+        <link rel="stylesheet" type="text/css" href="./css/style.css" />
+
         <script>
-            let life = 10;
-            function makeTable() {
-                let table = document.createElement("table");
-                log("let table");
-                for (let i = 0; i < 9; i++) {
-                    let tr = document.createElement("tr");
-                    log(i + " tr");
-                    for (let j = 0; j < 9; j++) {
-                        let td = document.createElement("td");
-                        log(j + " td");
-                        let input = document.createElement("input");
-                        log(j + " input");
-
-                        input.type = "number";
-                        input.id = i + "." + j;
-                        input.max = 9;
-                        input.min = 0;
-
-                        log(j + " type and id and maxlength");
-                        td.append(input);
-                        log(j + " td ap");
-                        tr.append(td);
-                        log(j + " tr ap");
-
-                        input.oninput = function () {
-                            input.value = input.value % 10;
-                            log(
-                                "changed! id : " +
-                                    input.id.replace(".", " , ") +
-                                    "   Number : " +
-                                    input.value
-                            );
-                        };
-                    }
-                    table.append(tr);
-                    log(i + " tb ap");
-
-                    let button = document.createElement("button");
-                    log("let Check Button");
-                    button.type = "button";
-                    button.onclick = Check();
-                }
-
-                document.body.append(table);
+            let dif = "";
+            function easy(){
+                dif = "easy";
+                let input = document.getElementById("stage");
+                alert("난이도가 쉬움으로 설정되었습니다.");
+                input.min = "1";
+                input.max = "1";
             }
 
-            function log(string) {
-                console.log(string);
+            function nomal(){
+                dif = "nomal";
+                let input = document.getElementById("stage");
+                alert("난이도가 보통으로 설정되었습니다.");
+                input.min = "0";
+                input.max = "0";
             }
 
-            function maxLengthCheck(object) {
-                if (object.value.length > object.maxLength) {
-                    object.value = object.value.slice(0, object.maxLength);
+            function hard(){
+                dif = "hard";
+                let input = document.getElementById("stage");
+                alert("난이도가 어려움으로 설정되었습니다.");
+                input.min = "0";
+                input.max = "0";
+            }
+
+            function Start(){
+                let ip = document.getElementById("stage");
+
+                if(Number(ip.max) > ip.value || Number(ip.min) < ip.value || ip.value == 0 || ip.value == ""){
+                    alert("스테이지를 입력해주세요. 0스테이지는 없습니다.");
+                    return;
+                }else if(dif == ""){
+                    alert("난이도를 설정해주세요.");
+                    return;
                 }
+
+                location.href='./MainGame.html?dif=' + dif + "&stage=" + ip.value;
             }
         </script>
+    </head>
+    <body>
+        <button onclick="easy()">쉬움</button>
+        <button onclick="nomal()">보통 - 개발중</button>
+        <button onclick="hard()">어려움 - 개발중</button>
+        <p></p>
+        <p>스테이지 : <input id="stage" min="0" max="0" type="number" value="0"></p>
+        <p></p>
+        <button id="start" onclick="Start()">시작</button>
     </body>
 </html>
