@@ -110,6 +110,13 @@ function check(x , y , data){
             document.body.append(a);
             life = life  - 1;
             document.getElementById("life").innerText = "남은 목숨 : " + life;
+        }else{
+            let a = document.createElement("audio");
+            a.autoplay = true;
+            a.src="./Right.mp3";
+            a.id="beep";
+            a.style.width = "0px";
+            document.body.append(a);
         }
     }
 
