@@ -112,6 +112,8 @@ function check(x , y , data){
             a.id="beep";
             a.style.width = "0px";
             document.body.append(a);
+
+            GameEnd();
         }
     }
 
@@ -149,8 +151,46 @@ function check(x , y , data){
     }
 }
 
-function stopBeep(){
+function GameEnd(){
+    for(var i = 0; i < 9;i++){
+        for(var j = 0; j < 9;j++){
+            if(document.getElementById(i + "." + j).value == ""){
+                return ;
+            }
+
+            if(document.getElementById(i + "." + j).value != Awnser[i][j]){
+                return ;
+            }
+        }
+    }
+
+    let b = document.createElement("audio");
+    b.autoplay = true;
+    b.src="./GG.wav";
+    b.id="go";
+    b.style.width = "0px";
+
+    document.body.append(b);
+
+    alert("게임 클리어!");
+
+    setTimeout(next , 7500);
 }
 
-function stopGo(){
+function next(){
+    var newURL = window.location.protocol + "/" + window.location.host + "/" + window.location.pathname;
+
+    location.href= newURL + "?dif=" + getParam("dif") + "&stage=" + (getParam("stage") * 1 + 1);
+}
+
+function getParam(sname) {
+    var params = location.search.substr(location.search.indexOf("?") + 1);
+    var sval = "";
+    params = params.split("&");
+
+    for (var i = 0; i < params.length; i++) {
+        temp = params[i].split("=");
+        if ([temp[0]] == sname) { sval = temp[1]; }
+    }
+    return sval;
 }
