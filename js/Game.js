@@ -1,4 +1,4 @@
-let life = 10;
+let life = 300;
 
 makeTable();
 
@@ -57,11 +57,6 @@ function makeTable() {
                 );
 
                 check(input.x , input.y , input.value);
-            };
-
-            input.onkeydown = function () {
-                input.value = input.value % 10;
-                check(input);
             };
 
             log(j + "input oninput");
