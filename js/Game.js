@@ -108,7 +108,7 @@ function check(x , y , data){
         }else{
             let a = document.createElement("audio");
             a.autoplay = true;
-            a.src="./Right.mp3";
+            a.src="./Right.MP3";
             a.id="beep";
             a.style.width = "0px";
             document.body.append(a);
