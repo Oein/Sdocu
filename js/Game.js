@@ -137,7 +137,7 @@ function check(x , y , data){
         b.id="go";
         b.style.width = "0px";
 
-        let newURL = window.location.protocol + "//" + window.location.host + "/" + window.location.pathname;
+        let newURL = window.location.protocol + "/" + window.location.host + "/" + window.location.pathname;
 
         let RestartButton = document.createElement("button");
         RestartButton.id="RestartButton";
@@ -178,9 +178,7 @@ function GameEnd(){
 }
 
 function next(){
-    var newURL = window.location.protocol + "/" + window.location.host + "/" + window.location.pathname;
-
-    location.href= newURL + "?dif=" + getParam("dif") + "&stage=" + (getParam("stage") * 1 + 1);
+    location.href= "http://sudoku.oein.kro.kr/MainGame.html?dif=" + getParam("dif") + "&stage=" + (getParam("stage") * 1 + 1);
 }
 
 function getParam(sname) {
